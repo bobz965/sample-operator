@@ -1,9 +1,9 @@
-# sample-operator
+# Sample-operator
 Example to create a sample operator using [operator-sdk](https://github.com/operator-framework/operator-sdk)
 
 In this example we will create a sample-operator for deploying [sample application](https://github.com/shailendra14k/Examples/tree/master/Sample) based on spring-boot and camel. 
 
-Prerequisites.
+## Prerequisites.
 
 1. Build the sample App image:
 ~~~

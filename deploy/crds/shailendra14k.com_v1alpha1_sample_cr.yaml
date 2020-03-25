@@ -1,0 +1,8 @@
+apiVersion: shailendra14k.com/v1alpha1
+kind: Sample
+metadata:
+  name: example-sample
+spec:
+  # Add fields here
+  size: 2
+  bodyvalue: "Response received from POD : {{env:HOSTNAME}}"
