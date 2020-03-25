@@ -6,19 +6,13 @@ In this example we will create a sample-operator for deploying [sample applicati
 ## Prerequisites.
 
 1. Build the sample App image:
-~~~
 [https://github.com/shailendra14k/Examples/blob/master/Sample/README.md](https://github.com/shailendra14k/Examples/blob/master/Sample/README.md)
-~~~
 
 2. Install operator-sdk 
-~~~
 [https://github.com/operator-framework/operator-sdk/blob/master/doc/user/install-operator-sdk.md](https://github.com/operator-framework/operator-sdk/blob/master/doc/user/install-operator-sdk.md)
-~~~
 
 3. Install golang
-~~~
 [https://golang.org/dl/](https://golang.org/dl/)
-~~~
 
 
 ## Steps to create the sample-operator.
