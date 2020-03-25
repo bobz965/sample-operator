@@ -175,6 +175,7 @@ spec:
   # Add fields here
   size: 2
   bodyvalue: "Response received from POD : {{env:HOSTNAME}}"
+  image: "quay.io/shailendra14k/sample:v0.1"
 ~~~
 ~~~
 $ oc create -f deploy/crds/shailendra14k.com_v1alpha1_sample_cr.yaml 
@@ -213,3 +214,29 @@ Response received from POD : example-sample-7d856cb9fc-7pbg2
 $ curl http://sample-sampleoperator.apps.lab.com/test
 Response received from POD : example-sample-7d856cb9fc-bjg47
 ~~~
+
+9. To update the Application size from 2 to 1
+~~~GO
+apiVersion: shailendra14k.com/v1alpha1
+kind: Sample
+metadata:
+  name: example-sample
+spec:
+  # Add fields here
+  size: 1
+  bodyvalue: "Response received from POD : {{env:HOSTNAME}}"
+  image: "quay.io/shailendra14k/sample:v0.1"
+~~~
+~~~
+$ oc apply -f deploy/crds/shailendra14k.com_v1alpha1_sample_cr.yaml
+
+$ oc get deployment
+NAME              READY     UP-TO-DATE   AVAILABLE   AGE
+example-sample    1/1       1            1           3m1s
+~~~
+
+Finally, you can delete the namespace using the command
+~~~
+$ oc delete project sample-operator
+~~~
+
