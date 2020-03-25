@@ -137,7 +137,7 @@ $ oc create -f deploy/role_binding.yaml
 $ oc create -f deploy/operator.yaml
 ~~~
 
-4. Verify the deploymnet
+4. Verify the deployment and logs
 ~~~
 $ oc get all
 NAME                                   READY     STATUS    RESTARTS   AGE
@@ -151,6 +151,15 @@ deployment.apps/sample-operator   1/1       1            1           97s
 
 NAME                                         DESIRED   CURRENT   READY     AGE
 replicaset.apps/sample-operator-867cf7c68f   1         1         1         97s
+
+//Operator logs
+{"level":"info","ts":1585146465.5662885,"logger":"metrics","msg":"Metrics Service object created","Service.Name":"sample-operator-metrics","Service.Namespace":"sample-operator"}
+{"level":"info","ts":1585146468.5416582,"logger":"cmd","msg":"Starting the Cmd."}
+{"level":"info","ts":1585146468.5419788,"logger":"controller-runtime.manager","msg":"starting metrics server","path":"/metrics"}
+{"level":"info","ts":1585146468.5421832,"logger":"controller-runtime.controller","msg":"Starting EventSource","controller":"sample-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1585146468.6432557,"logger":"controller-runtime.controller","msg":"Starting EventSource","controller":"sample-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1585146468.743742,"logger":"controller-runtime.controller","msg":"Starting Controller","controller":"sample-controller"}
+{"level":"info","ts":1585146468.7437823,"logger":"controller-runtime.controller","msg":"Starting workers","controller":"sample-controller","worker count":1}
 ~~~
 
 5. Create the Sample Custom Resource(CR)
