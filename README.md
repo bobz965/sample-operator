@@ -62,6 +62,7 @@ $ operator-sdk add api --api-version=shailendra14k.com/v1alpha1 --kind=Sample
 type SampleSpec struct {
   Size        int32             `json:"size"`
   BodyValue   string            `json:"bodyvalue"`
+  Image        string           `json:"image"`
 
 }
 
