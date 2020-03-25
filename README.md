@@ -94,7 +94,7 @@ operator-sdk generate crds
 operator-sdk add controller --api-version=shailendra14k.com/v1alpha1 --kind=Sample
 ~~~
 
-5. Replace the default `pkg/controller/sample/sample_controller.go` with the sample_controller.go 
+5. Replace the default `pkg/controller/sample/sample_controller.go` with the [sample_controller.go](https://github.com/shailendra14k/sample-operator/blob/master/pkg/controller/sample/sample_controller.go) 
 
 
 6. Build and push the Operator image to a reqistry.
