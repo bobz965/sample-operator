@@ -19,12 +19,12 @@ In this example we will create a sample-operator for deploying [sample applicati
 
 1. Create sample-operator project
 ~~~
-mkdir -p $GOPATH/src/github.com/shailendra14k/  // remane to your account.
-cd $GOPATH/src/github.com/shailendra14k/
-export GO111MODULE=on
-operator-sdk new sample-operator
-cd sample-operator
-go mod tidy // Install dependencies
+$ mkdir -p $GOPATH/src/github.com/shailendra14k/  // remane to your account.
+$ cd $GOPATH/src/github.com/shailendra14k/
+$ export GO111MODULE=on
+$ operator-sdk new sample-operator
+$ cd sample-operator
+$ go mod tidy // Install dependencies
 ~~~
 
 2. Verify the directory structure cretaed. 
@@ -57,7 +57,7 @@ More info about SDK [project layout](https://github.com/operator-framework/opera
 
 2. Create Custom Resource Definition (CRD)
 ~~~
-operator-sdk add api --api-version=shailendra14k.com/v1alpha1 --kind=Sample
+$ operator-sdk add api --api-version=shailendra14k.com/v1alpha1 --kind=Sample
 ~~~
 
 3. Update the Smaple CR Spec and Status at `pkg/apis/shailendra14k/v1alpha1/sample_types.go`
@@ -77,15 +77,15 @@ type SampleStatus struct {
 
 Run the below command to update the generaed code after modifyin *_types.go
 ~~~
-operator-sdk generate k8s
+$ operator-sdk generate k8s
 
 //Generate the updated CRDs
-operator-sdk generate crds
+$ operator-sdk generate crds
 ~~~
 
 4. Create a new Controller to watch and reconcile Sample resource
 ~~~
-operator-sdk add controller --api-version=shailendra14k.com/v1alpha1 --kind=Sample
+$ operator-sdk add controller --api-version=shailendra14k.com/v1alpha1 --kind=Sample
 ~~~
 
 5. Replace the default `pkg/controller/sample/sample_controller.go` with the [sample_controller.go](https://github.com/shailendra14k/sample-operator/blob/master/pkg/controller/sample/sample_controller.go) 
@@ -93,7 +93,7 @@ operator-sdk add controller --api-version=shailendra14k.com/v1alpha1 --kind=Samp
 
 6. Build and push the Operator image to a reqistry.
 ~~~
-operator-sdk build quay.io/shailendra14k/sample-operator:v0.1 --image-builder podman
+$ operator-sdk build quay.io/shailendra14k/sample-operator:v0.1 --image-builder podman
 
 //Verify the operator image cretaed locally
 [root@shsingh sample-operator]# podman images
@@ -102,7 +102,7 @@ quay.io/shailendra14k/sample-operator                     v0.1     50fceb91c078 
 
 // Push the image
 
-podman push quay.io/shailendra14k/sample-operator:v0.1
+$ podman push quay.io/shailendra14k/sample-operator:v0.1
 ~~~
 
 7. Update the default `deploy/operator.yaml` with the correct image deatils
@@ -121,20 +121,20 @@ containers:
 
 1. Create a new project
 ~~~
-oc new-project sample-operator
+$ oc new-project sample-operator
 ~~~
 
 2. Create the sample CRD
 ~~~
-oc create -f deploy/crds/shailendra14k.com_samples_crd.yaml
+$ oc create -f deploy/crds/shailendra14k.com_samples_crd.yaml
 ~~~
 
 3. Deploy the Operator along with set-up the RBAC
 ~~~
-oc create -f deploy/service_account.yaml
-oc create -f deploy/role.yaml
-oc create -f deploy/role_binding.yaml
-oc create -f deploy/operator.yaml
+$ oc create -f deploy/service_account.yaml
+$ oc create -f deploy/role.yaml
+$ oc create -f deploy/role_binding.yaml
+$ oc create -f deploy/operator.yaml
 ~~~
 
 4. Verify the deploymnet
@@ -174,26 +174,26 @@ sample.shailendra14k.com/example-sample created
 
 6. Verify the application deployemnet and POD has been created.
 ~~~
-$oc get deployment
+$ oc get deployment
 NAME              READY     UP-TO-DATE   AVAILABLE   AGE
 example-sample    2/2       2            2           4m8s
 sample-operator   1/1       1            1           10m
 
-$oc get pods
+$ oc get pods
 NAME                               READY     STATUS    RESTARTS   AGE
 example-sample-7d856cb9fc-7pbg2    1/1       Running   0          3m29s
 example-sample-7d856cb9fc-bjg47    1/1       Running   0          3m29s
 sample-operator-867cf7c68f-jpjxk   1/1       Running   0          10m
 
-$oc get samples
+$ oc get samples
 NAME             AGE
 example-sample   5m23s
 ~~~
 
 7. Create a service and route to test the camel route application(Sample image).
 ~~~
-$oc create service clusterip sample --tcp=8080:8080
-$oc expose svc/sample
+$ oc create service clusterip sample --tcp=8080:8080
+$ oc expose svc/sample
 ~~~
 
 8. Test the Application
