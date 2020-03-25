@@ -5,14 +5,11 @@ In this example we will create a sample-operator for deploying [sample applicati
 
 ## Prerequisites.
 
-1. Build the sample App image:
-[https://github.com/shailendra14k/Examples/blob/master/Sample/README.md](https://github.com/shailendra14k/Examples/blob/master/Sample/README.md)
-
-2. Install operator-sdk 
-[https://github.com/operator-framework/operator-sdk/blob/master/doc/user/install-operator-sdk.md](https://github.com/operator-framework/operator-sdk/blob/master/doc/user/install-operator-sdk.md)
-
-3. Install golang
-[https://golang.org/dl/](https://golang.org/dl/)
+1. Build the [sample App](https://github.com/shailendra14k/Examples/blob/master/Sample/README.md) image
+2. Install [operator-sdk](https://github.com/operator-framework/operator-sdk/blob/master/doc/user/install-operator-sdk.md)
+3. Install [golang](https://golang.org/dl/)
+4. Access of Openshift cluster with `cluster-admin` permissions.
+5. Openshift CLI(OC)
 
 
 ## Steps to create the sample-operator.
@@ -75,7 +72,7 @@ type SampleStatus struct {
 
 ~~~
 
-Run the below command to update the generaed code after modifyin *_types.go
+Run the below command to update the generaed code after modifying *_types.go
 ~~~
 $ operator-sdk generate k8s
 
