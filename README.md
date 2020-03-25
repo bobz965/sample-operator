@@ -160,8 +160,10 @@ replicaset.apps/sample-operator-867cf7c68f   1         1         1         97s
 ~~~
 
 5. Create the Sample Custom Resource(CR)
-~~~GO
+~~~
 $ cat deploy/crds/shailendra14k.com_v1alpha1_sample_cr.yaml 
+~~~
+~~~GO
 apiVersion: shailendra14k.com/v1alpha1
 kind: Sample
 metadata:
@@ -176,10 +178,35 @@ $ oc create -f deploy/crds/shailendra14k.com_v1alpha1_sample_cr.yaml
 sample.shailendra14k.com/example-sample created
 ~~~
 
+6. Verify the application deployemnet and POD has been created.
+~~~
+$oc get deployment
+NAME              READY     UP-TO-DATE   AVAILABLE   AGE
+example-sample    2/2       2            2           4m8s
+sample-operator   1/1       1            1           10m
 
+$oc get pods
+NAME                               READY     STATUS    RESTARTS   AGE
+example-sample-7d856cb9fc-7pbg2    1/1       Running   0          3m29s
+example-sample-7d856cb9fc-bjg47    1/1       Running   0          3m29s
+sample-operator-867cf7c68f-jpjxk   1/1       Running   0          10m
 
+$oc get samples
+NAME             AGE
+example-sample   5m23s
+~~~
 
+7. Create a service and route to test the camel route application(Sample image).
+~~~
+$oc create service clusterip sample --tcp=8080:8080
+$oc expose svc/sample
+~~~
 
+8. Test the Application
+~~~
+$ curl http://sample-sampleoperator.apps.lab.com/test
+Response received from POD : example-sample-7d856cb9fc-7pbg2
 
-
-
+$ curl http://sample-sampleoperator.apps.lab.com/test
+Response received from POD : example-sample-7d856cb9fc-bjg47
+~~~
