@@ -181,7 +181,7 @@ func (r *ReconcileSample) deploymentForSample(m *shailendra14kv1alpha1.Sample) *
 				},
 				Spec: corev1.PodSpec{
 					Containers: []corev1.Container{{
-						Image:   "quay.io/shailendra14k/sample:v0.1",
+						Image:   m.Spec.Image,
 						Name:    "sample",
 						Ports: []corev1.ContainerPort{{
 							ContainerPort: 8080,
@@ -216,4 +216,5 @@ func getPodNames(pods []corev1.Pod) []string {
 	}
 	return podNames
 }
+
 
