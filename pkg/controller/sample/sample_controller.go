@@ -2,10 +2,10 @@ package sample
 
 import (
 	"context"
-        "reflect"
+	"reflect"
 
 	shailendra14kv1alpha1 "github.com/shailendra14k/sample-operator/pkg/apis/shailendra14k/v1alpha1"
-        appsv1 "k8s.io/api/apps/v1"
+	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -181,16 +181,16 @@ func (r *ReconcileSample) deploymentForSample(m *shailendra14kv1alpha1.Sample) *
 				},
 				Spec: corev1.PodSpec{
 					Containers: []corev1.Container{{
-						Image:   m.Spec.Image,
-						Name:    "sample",
+						Image: m.Spec.Image,
+						Name:  "sample",
 						Ports: []corev1.ContainerPort{{
 							ContainerPort: 8080,
 							Name:          "sample",
-                                                        Protocol: "TCP",
+							Protocol:      "TCP",
 						}},
-                                               Env: []corev1.EnvVar{{
-                                                        Name: "CAMEL_SETBODY",
-                                                        Value: m.Spec.BodyValue,
+						Env: []corev1.EnvVar{{
+							Name:  "CAMEL_SETBODY",
+							Value: m.Spec.BodyValue,
 						}},
 					}},
 				},
@@ -216,5 +216,3 @@ func getPodNames(pods []corev1.Pod) []string {
 	}
 	return podNames
 }
-
-
